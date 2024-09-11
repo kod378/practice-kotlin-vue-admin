@@ -1,16 +1,32 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img alt="Vue logo" src="@/assets/logo.png">
+  <router-view></router-view>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  data() {
+    return {
+      hasStoreName: localStorage.getItem('storeName') !== null && localStorage.getItem('storeName') !== 'null',
+    }
+  },
+  computed: {
+    storeName() {
+      if (this.hasStoreName) {
+        return localStorage.getItem('storeName');
+      } else {
+        return '';
+      }
+    }
+  },
+  provide() {
+    return {
+      hasStoreName: this.hasStoreName,
+      storeName: this.storeName,
+    }
+  },
 }
 </script>
 
