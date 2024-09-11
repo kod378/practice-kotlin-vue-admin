@@ -51,7 +51,7 @@ export default {
         const accessToken = this.$store.getters.accessToken;
         if (accessToken) {
           this.$store.dispatch('setIsLoggedIn', true);
-          // await this.$router.push('/');
+          await this.$router.push('/');
         }
       } catch (error) {
         this.error = error.message || 'Fail to register, please try again.';
