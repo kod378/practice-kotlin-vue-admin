@@ -7,8 +7,10 @@ export default {
     state() {
         return {
             accessToken: null,
-            accessTokenExpiredAt: null,
+            refreshToken: null,
             username: null,
+            storeId: null,
+            storeName: null,
         }
     },
     mutations,

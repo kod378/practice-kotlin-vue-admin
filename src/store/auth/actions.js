@@ -9,7 +9,7 @@ export default {
             });
 
             const responseData = response.data;
-            setUserAndSaveInLocalStorage(context, payload, responseData);
+            setUser(context, payload, responseData);
 
         } catch (error) {
             const errorMessage = error.response?.data?.message || "Failed to login";
@@ -26,32 +26,42 @@ export default {
             });
 
             const responseData = response.data;
-            setUserAndSaveInLocalStorage(context, payload, responseData);
+            setUser(context, payload, responseData);
 
         } catch (error) {
             const errorMessage = error.response?.data?.message || "Failed to register";
             console.log(error.response?.data);
             throw new Error(errorMessage);
         }
+    },
+    setStore(context, payload) {
+        context.commit('setStore', {
+            storeId: payload.storeId,
+            storeName: payload.storeName,
+        });
+    },
+    setJwtToken(context, payload) {
+        context.commit('setJwtToken', {
+            accessToken: payload.accessToken,
+            refreshToken: payload.refreshToken,
+        });
     }
 };
 
-function setUserAndSaveInLocalStorage(context, payload, responseData) {
+function setUser(context, payload, responseData) {
     console.log(responseData);
 
     const responseBodyData = responseData.body;
-    const storeResponse = responseBodyData.storeResponse;
+    const storeSimpleResponse = responseBodyData.storeSimpleResponse;
+
+    console.log(storeSimpleResponse ? storeSimpleResponse.name : null)
+    console.log(storeSimpleResponse ? storeSimpleResponse.id : null)
 
     context.commit('setUser', {
         accessToken: responseBodyData.accessToken,
         refreshToken: responseBodyData.refreshToken,
-        storeName: storeResponse ? storeResponse.storeName : null,
-        storeId: storeResponse ? storeResponse.storeId : null,
+        storeName: storeSimpleResponse ? storeSimpleResponse.name : null,
+        storeId: storeSimpleResponse ? storeSimpleResponse.id : null,
         username: payload.username,
     });
-
-    localStorage.setItem('accessToken', responseBodyData.accessToken);
-    localStorage.setItem('refreshToken', responseBodyData.refreshToken);
-    localStorage.setItem('storeName', storeResponse ? storeResponse.storeName : null);
-    localStorage.setItem('storeId', storeResponse ? storeResponse.storeId : null);
 }

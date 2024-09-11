@@ -29,9 +29,7 @@ export default {
   },
   computed: {
     isLoggedIn() {
-      // return this.$store.getters.isLoggedIn;
-      //LocalStorage에 저장된 토큰이 있는지 확인
-      return localStorage.getItem('accessToken');
+      return this.$store.getters.isLoggedIn;
     }
   },
   methods: {
@@ -58,6 +56,12 @@ export default {
       this.error = null;
       this.isLoading = false;
     },
+  },
+  created() {
+    // 이미 로그인 되어있는 경우 메인 페이지로 이동합니다.
+    if (this.isLoggedIn) {
+      this.$router.push('/');
+    }
   }
 };
 </script>

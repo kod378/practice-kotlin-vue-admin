@@ -34,9 +34,7 @@ export default {
   },
   computed: {
     isLoggedIn() {
-      // return this.$store.getters.isLoggedIn;
-      //LocalStorage에 저장된 토큰이 있는지 확인
-      return localStorage.getItem('accessToken');
+      return this.$store.getters.isLoggedIn;
     }
   },
   methods: {
@@ -53,7 +51,7 @@ export default {
         const accessToken = this.$store.getters.accessToken;
         if (accessToken) {
           this.$store.dispatch('setIsLoggedIn', true);
-          await this.$router.push('/');
+          // await this.$router.push('/');
         }
       } catch (error) {
         this.error = error.message || 'Fail to register, please try again.';
@@ -67,6 +65,10 @@ export default {
     },
   },
   created() {
+    // 이미 로그인 되어있는 경우 메인 페이지로 이동합니다.
+    if (this.isLoggedIn) {
+      this.$router.push('/');
+    }
     // URL query에서 "message" 파라미터 확인
     if (this.$route.query.message === 'refresh-token-expired') {
       this.isTokenExpiredMessage = true;

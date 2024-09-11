@@ -80,6 +80,17 @@ export default {
       try {
         const response = await apiRequest('/api/store', 'POST', this.store);
         console.log(response);
+
+        const responseData = response.data;
+        console.log(responseData);
+        const storeId = responseData.body.id;
+        const storeName = responseData.body.name;
+
+        this.$store.dispatch('setStore', { storeId, storeName });
+        alert(`${storeName} 가게가 등록되었습니다.`);
+
+        await this.$router.push('/');
+
       } catch (error) {
         console.error(error);
       }

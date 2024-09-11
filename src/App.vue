@@ -9,13 +9,13 @@ export default {
   name: 'App',
   data() {
     return {
-      hasStoreName: localStorage.getItem('storeName') !== null && localStorage.getItem('storeName') !== 'null',
+      hasStoreName: this.$store.getters.storeName !== null,
     }
   },
   computed: {
     storeName() {
       if (this.hasStoreName) {
-        return localStorage.getItem('storeName');
+        return this.$store.getters.storeName;
       } else {
         return '';
       }

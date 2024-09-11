@@ -11,7 +11,7 @@
         <router-link to="/store/register">가게 등록하기</router-link>
       </div>
       <div v-else>
-        <router-link to="/store">가게 정보</router-link>
+        <router-link to="/store">{{ storeName }} 가게 정보</router-link>
       </div>
     </section>
   </div>
@@ -25,16 +25,15 @@ export default {
     async checkMe() {
       try {
         const response = await apiRequest('/api/auth/me');
-        console.log(response);
         const data = response.data;
         console.log(data);
       } catch (error) {
-        console.error(error);
+        console.log(error);
         console.error('Fail to get user information');
       }
     },
     checkLogin() {
-      const accessToken = localStorage.getItem('accessToken');
+      const accessToken = this.$store.getters.accessToken;
       if (!accessToken) {
         this.$router.push('/login');
       }

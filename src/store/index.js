@@ -1,4 +1,6 @@
 import { createStore } from "vuex";
+import createPersistedState from "vuex-persistedstate";
+
 import authModule from "./auth/index.js";
 
 const store = createStore({
@@ -25,6 +27,9 @@ const store = createStore({
             return state.isLoggedIn;
         },
     },
+    plugins: [createPersistedState({
+        paths: ["auth", 'isLoggedIn'],
+    })],
 });
 
 export default store;
