@@ -6,7 +6,7 @@
       </div>
       <div class="profile">
         <img class="profile-icon" :src="userProfile.iconUrl" alt="Profile Icon" />
-        <span class="profile-name">{{ storeName }}</span>
+        <span class="profile-name">{{ storeName() }}</span>
       </div>
     </div>
   </header>

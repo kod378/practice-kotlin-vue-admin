@@ -7,24 +7,18 @@
 
 export default {
   name: 'App',
-  data() {
-    return {
-      hasStoreName: this.$store.getters.storeName !== null,
-    }
-  },
   computed: {
     storeName() {
-      if (this.hasStoreName) {
-        return this.$store.getters.storeName;
-      } else {
-        return '';
-      }
-    }
+      return this.hasStore ? this.$store.getters['store/name'] : '';
+    },
+    hasStore() {
+      return this.$store.getters['store/id'] !== null;
+    },
   },
   provide() {
     return {
-      hasStoreName: this.hasStoreName,
-      storeName: this.storeName,
+      hasStore: () => this.hasStore,
+      storeName: () => this.storeName,
     }
   },
 }

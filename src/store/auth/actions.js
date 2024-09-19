@@ -34,12 +34,6 @@ export default {
             throw new Error(errorMessage);
         }
     },
-    setStore(context, payload) {
-        context.commit('setStore', {
-            storeId: payload.storeId,
-            storeName: payload.storeName,
-        });
-    },
     setJwtToken(context, payload) {
         context.commit('setJwtToken', {
             accessToken: payload.accessToken,
@@ -52,16 +46,15 @@ function setUser(context, payload, responseData) {
     console.log(responseData);
 
     const responseBodyData = responseData.body;
-    const storeSimpleResponse = responseBodyData.storeSimpleResponse;
-
-    console.log(storeSimpleResponse ? storeSimpleResponse.name : null)
-    console.log(storeSimpleResponse ? storeSimpleResponse.id : null)
+    const storeResponse = responseBodyData.storeResponse;
 
     context.commit('setUser', {
         accessToken: responseBodyData.accessToken,
         refreshToken: responseBodyData.refreshToken,
-        storeName: storeSimpleResponse ? storeSimpleResponse.name : null,
-        storeId: storeSimpleResponse ? storeSimpleResponse.id : null,
+        // storeName: storeResponse ? storeResponse.name : null,
+        // storeId: storeResponse ? storeResponse.id : null,
         username: payload.username,
     });
+
+    context.dispatch('store/setStore', storeResponse, {root: true})
 }

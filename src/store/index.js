@@ -2,10 +2,12 @@ import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
 
 import authModule from "./auth/index.js";
+import storeModule from "./store/index.js";
 
 const store = createStore({
     modules: {
         auth: authModule,
+        store: storeModule,
     },
     state() {
         return {
@@ -28,7 +30,7 @@ const store = createStore({
         },
     },
     plugins: [createPersistedState({
-        paths: ["auth", 'isLoggedIn'],
+        paths: ["auth", 'isLoggedIn', 'store'],
     })],
 });
 

@@ -7,11 +7,5 @@ export default {
     },
     username(state) {
         return state.username;
-    },
-    storeId(state) {
-        return state.storeId;
-    },
-    storeName(state) {
-        return state.storeName;
     }
 }
