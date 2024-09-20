@@ -15,6 +15,7 @@
       </div>
       <div v-else>
         <StoreInfo></StoreInfo>
+        <StoreMenuList></StoreMenuList>
       </div>
     </section>
   </div>
@@ -22,9 +23,10 @@
 <script>
 import {apiRequest} from "@/utils/api";
 import StoreInfo from "@/pages/store/StoreInfo.vue";
+import StoreMenuList from "@/pages/store-menu/StoreMenuList.vue";
 
 export default {
-  components: { StoreInfo },
+  components: {StoreMenuList, StoreInfo },
   inject: ['hasStore'],
   methods: {
     async checkMe() {
