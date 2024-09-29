@@ -44,10 +44,7 @@ axiosInstance.interceptors.response.use(
                     return axiosInstance(originalRequest);
                 } catch (refreshError) {
                     // RefreshToken이 만료되었을 때 로그인 화면으로 리디렉션하며 query에 이유 전달
-                    await store.dispatch('setJwtToken', {
-                        accessToken: null,
-                        refreshToken: null,
-                    });
+                    await store.dispatch('logout');
                     await router.push({
                         name: 'login',
                         query: {message: 'refresh-token-expired'}
@@ -56,6 +53,7 @@ axiosInstance.interceptors.response.use(
                 }
             } else {
                 // RefreshToken이 없는 경우에도 로그인 페이지로 리디렉션
+                await store.dispatch('logout');
                 await router.push({
                     name: 'login',
                     query: {message: 'refresh-token-expired'}

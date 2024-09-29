@@ -10,6 +10,7 @@ export default {
 
             const responseData = response.data;
             setUser(context, payload, responseData);
+            await context.dispatch('setIsLoggedIn', true);
 
         } catch (error) {
             const errorCode = error.response?.data?.result?.code;
@@ -31,6 +32,7 @@ export default {
 
             const responseData = response.data;
             setUser(context, payload, responseData);
+            await context.dispatch('setIsLoggedIn', true);
 
         } catch (error) {
             const errorMessage = error.response?.data?.message || "Failed to register";
@@ -43,6 +45,14 @@ export default {
             accessToken: payload.accessToken,
             refreshToken: payload.refreshToken,
         });
+    },
+    async logout(context) {
+        context.commit('setUser', {
+            username: null,
+            accessToken: null,
+            refreshToken: null,
+        });
+        await context.dispatch('setIsLoggedIn', false);
     }
 };
 
