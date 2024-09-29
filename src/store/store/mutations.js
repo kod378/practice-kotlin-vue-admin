@@ -3,7 +3,7 @@ export default {
         state.id = payload.id;
         state.name = payload.name;
         state.address = payload.address;
-        // state.status = payload.status;
+        state.status = payload.status;
         state.category = payload.category;
         state.star = payload.star;
         state.thumbnailUrl = payload.thumbnailUrl;

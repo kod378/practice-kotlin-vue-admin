@@ -5,7 +5,7 @@ export default {
             id: payload.id,
             name: payload.name,
             address: payload.address,
-            // status: payload.status,
+            status: payload.status,
             category: payload.category,
             star: payload.star,
             thumbnailUrl: payload.thumbnailUrl,

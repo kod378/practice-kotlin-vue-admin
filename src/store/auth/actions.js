@@ -12,7 +12,11 @@ export default {
             setUser(context, payload, responseData);
 
         } catch (error) {
-            const errorMessage = error.response?.data?.message || "Failed to login";
+            const errorCode = error.response?.data?.result?.code;
+            if (errorCode === 2004 || errorCode === 4404) {
+                throw new Error("Invalid email or password. Please try again.");
+            }
+            const errorMessage = error.response?.data?.result?.message || "Failed to login";
             console.log(error.response?.data);
             throw new Error(errorMessage);
         }
@@ -56,5 +60,7 @@ function setUser(context, payload, responseData) {
         username: payload.username,
     });
 
-    context.dispatch('store/setStore', storeResponse, {root: true})
+    if (storeResponse) {
+        context.dispatch('store/setStore', storeResponse, {root: true})
+    }
 }

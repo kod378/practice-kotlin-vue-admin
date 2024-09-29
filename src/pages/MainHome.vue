@@ -2,13 +2,6 @@
   <div>
     <base-header></base-header>
     <section>
-<!--      <button @click="logout">Logout</button>-->
-      <button @click="checkMe">check me</button>
-      <br>
-      <br>
-      <button @click="registerMenu">메뉴추가</button>
-    </section>
-    <section>
       <div v-if="!hasStore()">
         <p>등록된 가게가 없습니다.</p>
         <router-link to="/store/register">가게 등록하기</router-link>
@@ -44,9 +37,6 @@ export default {
       if (!accessToken) {
         this.$router.push('/login');
       }
-    },
-    async registerMenu() {
-      await this.$router.push('/store-menu/register');
     },
   },
   created() {

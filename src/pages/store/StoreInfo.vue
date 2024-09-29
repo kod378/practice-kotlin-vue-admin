@@ -7,11 +7,14 @@
       <p><strong>주소:</strong> {{ store.address }}</p>
       <p><strong>전화번호:</strong> {{ store.phoneNumber }}</p>
       <p><strong>카테고리:</strong> {{ getCategoryDisplay(store.category) }}</p>
-<!--      <p><strong>상태:</strong> {{ getStatusDescription(store.status) }}</p>-->
+      <p><strong>상태:</strong> {{ getStatusDescription(store.status) }}</p>
       <p><strong>별점:</strong> {{ store.star.toFixed(1) }} / 5.0</p>
       <p><strong>최소 주문 금액:</strong> {{ store.minimumAmount.toFixed(2) }} 원</p>
       <p><strong>최소 배달 금액:</strong> {{ store.minimumDeliveryAmount.toFixed(2) }} 원</p>
     </div>
+  </div>
+  <div>
+    <button @click="registerMenu">메뉴추가</button>
   </div>
 </template>
 
@@ -41,19 +44,21 @@ export default {
         HAMBURGER: "햄버거",
         COFFEE_TEA: "커피&차",
       },
-      // storeStatuses: {
-      //   REGISTERED: "등록",
-      //   UNREGISTERED: "해지",
-      // },
+      storeStatuses: {
+        REGISTERED: "준비중",
+        OPEN: "영업중",
+        CLOSE: "영업종료",
+        UNREGISTERED: "해지",
+      },
     };
   },
   methods: {
     getCategoryDisplay(category) {
       return this.storeCategories[category] || "알 수 없음";
     },
-    // getStatusDescription(status) {
-    //   return this.storeStatuses[status] || "알 수 없음";
-    // },
+    getStatusDescription(status) {
+      return this.storeStatuses[status] || "알 수 없음";
+    },
     getStoreInfo() {
       //vuex에서 store모듈 정보 가져오기
       this.store.name = this.$store.getters['store/name'];
@@ -65,6 +70,9 @@ export default {
       this.store.minimumAmount = this.$store.getters['store/minimumAmount'];
       this.store.minimumDeliveryAmount = this.$store.getters['store/minimumDeliveryAmount'];
       this.store.phoneNumber = this.$store.getters['store/phoneNumber'];
+    },
+    async registerMenu() {
+      await this.$router.push('/store-menu/register');
     },
   },
   created() {

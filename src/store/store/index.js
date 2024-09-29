@@ -10,7 +10,7 @@ export default {
             id: null,
             name: null,
             address: "",
-            // status: "", // "UNREGISTERED" 상태도 가능
+            status: "", // enum에 따른 상태 값
             category: "", // enum에 따른 카테고리 값
             star: 0.0,
             thumbnailUrl: "",

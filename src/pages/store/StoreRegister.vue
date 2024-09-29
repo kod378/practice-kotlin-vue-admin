@@ -83,10 +83,10 @@ export default {
 
         const responseData = response.data;
         console.log(responseData);
-        const storeId = responseData.body.id;
+        // const storeId = responseData.body.id;
         const storeName = responseData.body.name;
 
-        this.$store.dispatch('setStore', { storeId, storeName });
+        this.$store.dispatch('store/setStore', responseData.body);
         alert(`${storeName} 가게가 등록되었습니다.`);
 
         await this.$router.push('/');

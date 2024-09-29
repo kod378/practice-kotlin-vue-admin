@@ -8,9 +8,9 @@ export default {
     address(state) {
         return state.address;
     },
-    // status(state) {
-    //     return state.status;
-    // },
+    status(state) {
+        return state.status;
+    },
     category(state) {
         return state.category;
     },
