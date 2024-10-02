@@ -18,6 +18,11 @@
           <button class="close-button" @click="goOrderView('CLOSE')">
             CLOSE
           </button>
+
+          <!-- 주문 기록 이동버튼 -->
+          <button class="close-button" @click="goOrderHistory">
+            HISTORY
+          </button>
         </div>
 
         <div class="logo-container">
@@ -52,17 +57,19 @@ export default {
       error: null,
     };
   },
+  computed: {
+    storeStatus() {
+      return this.$store.getters['store/status'];
+    },
+  },
   methods: {
     async goOrderView(status) {
-      const currentStatus = this.$store.getters['store/status'];
-      console.log(currentStatus);
-
+      console.log(this.storeStatus);
       console.log(status);
-
-      if (currentStatus === status) {
-        alert('이미 해당 상태입니다. 상태를 변경 후 다시 시도해주세요.');
+      if (this.storeStatus === status) {
+        alert('이미 해당 상태입니다. 다른 상태로 변경해주세요.');
         return;
-      } else if (status && currentStatus) {
+      } else if (status && this.storeStatus) {
         try {
           this.isLoading = true;
           const response = await apiRequest(`/api/store/${status.toLowerCase()}`, 'PUT');
@@ -84,7 +91,7 @@ export default {
         await this.$router.push({name: 'order-view'});
       } else if (status === 'CLOSE') {
         alert('영업을 종료합니다.');
-        // await this.$router.push('/');
+        await this.$router.push('/');
       }
     },
     closeDialog() {
@@ -93,6 +100,13 @@ export default {
     },
     replaceToMain() {
       this.$router.replace('/');
+    },
+    goOrderHistory() {
+      if (this.storeStatus === 'OPEN') {
+        alert('영업 중에는 주문 기록을 확인할 수 없습니다.');
+        return;
+      }
+      this.$router.push('/order-history'); // 주문 기록 페이지로 이동
     },
   },
 };
