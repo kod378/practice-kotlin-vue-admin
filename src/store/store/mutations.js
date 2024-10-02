@@ -11,4 +11,7 @@ export default {
         state.minimumDeliveryAmount = payload.minimumDeliveryAmount;
         state.phoneNumber = payload.phoneNumber;
     },
+    setStatus(state, payload) {
+        state.status = payload;
+    }
 }

@@ -9,14 +9,14 @@ export default {
         return {
             id: null,
             name: null,
-            address: "",
-            status: "", // enum에 따른 상태 값
-            category: "", // enum에 따른 카테고리 값
-            star: 0.0,
-            thumbnailUrl: "",
-            minimumAmount: 0,
-            minimumDeliveryAmount: 0,
-            phoneNumber: "",
+            address: null,
+            status: null, // enum에 따른 상태 값
+            category: null, // enum에 따른 카테고리 값
+            star: null,
+            thumbnailUrl: null,
+            minimumAmount: null,
+            minimumDeliveryAmount: null,
+            phoneNumber: null,
         }
     },
     mutations,

@@ -14,7 +14,6 @@
   </div>
 </template>
 <script>
-import {apiRequest} from "@/utils/api";
 import StoreInfo from "@/pages/store/StoreInfo.vue";
 import StoreMenuList from "@/pages/store-menu/StoreMenuList.vue";
 
@@ -22,16 +21,6 @@ export default {
   components: {StoreMenuList, StoreInfo },
   inject: ['hasStore'],
   methods: {
-    async checkMe() {
-      try {
-        const response = await apiRequest('/api/auth/me');
-        const data = response.data;
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-        console.error('Fail to get user information');
-      }
-    },
     checkLogin() {
       const accessToken = this.$store.getters.accessToken;
       if (!accessToken) {

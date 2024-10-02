@@ -14,4 +14,8 @@ export default {
             phoneNumber: payload.phoneNumber
         });
     },
+    setStatus(context, payload) {
+        console.log('setStatus action', payload);
+        context.commit('setStatus', payload);
+    }
 }

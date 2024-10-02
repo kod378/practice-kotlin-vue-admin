@@ -1,16 +1,16 @@
 <template>
   <div class="store-details">
-    <h1>{{ store.name }}</h1>
-    <img :src="store.thumbnailUrl" alt="Store Thumbnail" class="store-thumbnail" />
+    <h1>{{ storeInfo.name }}</h1>
+    <img :src="storeInfo.thumbnailUrl" alt="Store Thumbnail" class="store-thumbnail" />
 
     <div class="store-info">
-      <p><strong>주소:</strong> {{ store.address }}</p>
-      <p><strong>전화번호:</strong> {{ store.phoneNumber }}</p>
-      <p><strong>카테고리:</strong> {{ getCategoryDisplay(store.category) }}</p>
-      <p><strong>상태:</strong> {{ getStatusDescription(store.status) }}</p>
-      <p><strong>별점:</strong> {{ store.star.toFixed(1) }} / 5.0</p>
-      <p><strong>최소 주문 금액:</strong> {{ store.minimumAmount.toFixed(2) }} 원</p>
-      <p><strong>최소 배달 금액:</strong> {{ store.minimumDeliveryAmount.toFixed(2) }} 원</p>
+      <p><strong>주소:</strong> {{ storeInfo.address }}</p>
+      <p><strong>전화번호:</strong> {{ storeInfo.phoneNumber }}</p>
+      <p><strong>카테고리:</strong> {{ getCategoryDisplay(storeInfo.category) }}</p>
+      <p><strong>상태:</strong> {{ getStatusDescription(storeInfo.status) }}</p>
+      <p><strong>별점:</strong> {{ storeInfo.star.toFixed(1) }} / 5.0</p>
+      <p><strong>최소 주문 금액:</strong> {{ storeInfo.minimumAmount.toFixed(2) }} 원</p>
+      <p><strong>최소 배달 금액:</strong> {{ storeInfo.minimumDeliveryAmount.toFixed(2) }} 원</p>
     </div>
   </div>
   <div>
@@ -23,17 +23,6 @@
 export default {
   data() {
     return {
-      store: {
-        name: "",
-        address: "",
-        status: "", // "UNREGISTERED" 상태도 가능
-        category: "", // enum에 따른 카테고리 값
-        star: 0.0,
-        thumbnailUrl: "",
-        minimumAmount: 0,
-        minimumDeliveryAmount: 0,
-        phoneNumber: "",
-      },
       storeCategories: {
         CHINESE_FOOD: "중식",
         WESTERN_FOOD: "양식",
@@ -52,6 +41,22 @@ export default {
       },
     };
   },
+  computed: {
+    storeInfo() {
+      return {
+        id: this.$store.getters['store/id'],
+        name: this.$store.getters['store/name'],
+        address: this.$store.getters['store/address'],
+        status: this.$store.getters['store/status'],
+        category: this.$store.getters['store/category'],
+        star: this.$store.getters['store/star'],
+        thumbnailUrl: this.$store.getters['store/thumbnailUrl'],
+        minimumAmount: this.$store.getters['store/minimumAmount'],
+        minimumDeliveryAmount: this.$store.getters['store/minimumDeliveryAmount'],
+        phoneNumber: this.$store.getters['store/phoneNumber'],
+      };
+    }
+  },
   methods: {
     getCategoryDisplay(category) {
       return this.storeCategories[category] || "알 수 없음";
@@ -59,24 +64,9 @@ export default {
     getStatusDescription(status) {
       return this.storeStatuses[status] || "알 수 없음";
     },
-    getStoreInfo() {
-      //vuex에서 store모듈 정보 가져오기
-      this.store.name = this.$store.getters['store/name'];
-      this.store.address = this.$store.getters['store/address'];
-      this.store.status = this.$store.getters['store/status'];
-      this.store.category = this.$store.getters['store/category'];
-      this.store.star = this.$store.getters['store/star'];
-      this.store.thumbnailUrl = this.$store.getters['store/thumbnailUrl'];
-      this.store.minimumAmount = this.$store.getters['store/minimumAmount'];
-      this.store.minimumDeliveryAmount = this.$store.getters['store/minimumDeliveryAmount'];
-      this.store.phoneNumber = this.$store.getters['store/phoneNumber'];
-    },
     async registerMenu() {
       await this.$router.push('/store-menu/register');
     },
-  },
-  created() {
-    this.getStoreInfo();
   },
 };
 </script>
