@@ -178,7 +178,7 @@ export default {
     // 주문 완료 처리
     completeOrder(orderId) {
       try {
-        const response = apiRequest(`/api/user-order/${orderId}/complete`, 'PUT');
+        const response = apiRequest(`/api/user-order/${orderId}/receive`, 'PUT');
         console.log(response);
         const order = this.getOrderById(orderId);
         order.userOrderResponse.status = 'RECEIVE'; // 상태 변경
