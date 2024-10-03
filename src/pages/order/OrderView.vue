@@ -222,6 +222,8 @@ export default {
   beforeUnmount() {
     // 컴포넌트가 파괴될 때 interval을 제거
     clearInterval(this.intervalId);
+    //영업 종료 처리(?)
+
   }
 }
 </script>
