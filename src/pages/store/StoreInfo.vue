@@ -8,7 +8,6 @@
       <p><strong>전화번호:</strong> {{ storeInfo.phoneNumber }}</p>
       <p><strong>카테고리:</strong> {{ getCategoryDisplay(storeInfo.category) }}</p>
       <p><strong>상태:</strong> {{ getStatusDescription(storeInfo.status) }}</p>
-      <p><strong>별점:</strong> {{ storeInfo.star.toFixed(1) }} / 5.0</p>
       <p><strong>최소 주문 금액:</strong> {{ storeInfo.minimumAmount.toFixed(2) }} 원</p>
       <p><strong>최소 배달 금액:</strong> {{ storeInfo.minimumDeliveryAmount.toFixed(2) }} 원</p>
     </div>
