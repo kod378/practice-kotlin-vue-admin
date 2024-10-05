@@ -1,24 +1,13 @@
-# vue-first-app
+# 🏪 Store 서버 프론트엔드
 
-## Project setup
-```
-npm install
-```
+이 프로젝트는 Store 서버의 프론트엔드를 Vue.js로 구현한 것입니다. 주요 기능은 다음과 같습니다.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## 기능 및 시나리오
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1. **로그인/회원가입**: 사용자 인증 및 회원 관리 기능.
+2. **Store 등록**: 신규 Store 등록 및 정보 관리.
+3. **Store 메뉴 등록**: Store에 메뉴 추가 및 수정.
+4. **Store Open/Close**: Store의 영업 상태 변경 (영업 시작/종료).
+5. **주문 기록**: 과거 주문 내역 확인 및 관리.
+6. **실시간 주문 관리 (SSE)**: Store 오픈 시 실시간 주문 확인 (Server-Sent-Events 사용).
+7. **주문 처리**: 주문 접수, 취소 및 상태 변경 (조리 중 → 배달 중 → 완료).
