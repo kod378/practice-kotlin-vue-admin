@@ -14,12 +14,3 @@
 
 ---
 
-## 🌐 배포 URL
-
-[배포된 Store 프론트엔드 바로가기](http://toy-project-store.s3-website.ap-northeast-2.amazonaws.com)
-
-테스트 계정(test1@test1.com / test1)
-
-### 주의 사항
-- 백엔드 서버(EC2 인스턴스)는 **주중 12:00 ~ 18:00** 사이에만 실행됩니다.
-- 이 시간 외에는 로그인 기능을 사용할 수 없으며, 화면은 정상적으로 보이지만 서버와의 통신은 불가능합니다.
